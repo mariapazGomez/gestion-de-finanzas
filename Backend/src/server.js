@@ -1,10 +1,5 @@
 const express = require('express');
-const app = express();
-
-// Rutas de ejemplo
-app.get('/', (req, res) => {
-    res.send('Primer inicio de gestion de gastos personales !');
-});
+const app = require('../src/app');
 
 // Iniciar el servidor
 app.listen(3000, () => {

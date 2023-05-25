@@ -2,15 +2,17 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "src/server",
+    "dev": "nodemon /src/server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
     "mongodb": "^5.5.0",
+    "mongoose": "^7.2.1",
     "react": "^18.2.0"
   }
 }
