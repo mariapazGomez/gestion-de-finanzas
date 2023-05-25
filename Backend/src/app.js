@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+require('../src/bd')
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 

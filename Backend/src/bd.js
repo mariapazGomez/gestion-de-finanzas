@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/nombre-de-tu-base-de-datos', {
+const DB_URL = 'mongodb+srv://root:SiHrBrnpp7YepAv9@gdg01tel335.tc2whtw.mongodb.net/';
+mongoose.connect(DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
