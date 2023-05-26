@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
-require('../src/bd')
+require('dotenv').config();
+// base de datos
+require('../src/bd');
+
+// midlewares
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
-app.get('/',(req,res)=>{
-    res.send('Todo funcionando ...');
-});
-
+// Rutas
+app.use('/api/home',require('./routes/index'));
+app.use('/api/statistics',require('./routes/statistics'));
 module.exports = app;
