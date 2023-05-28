@@ -12,7 +12,7 @@ Aplicación Web para el manejo de las finanzas personales
 -   On your browser go to `http://localhost:3000/`.
 
 ## Project structure:
-`- `Front/`
+- `Front/`
     - Contiene todos los archivos correspondientes al frontend de la aplicacón.
     - `public/`  Contiene archivos estáticos y públicos del frontend.
     - `src/` Contiene los archivos de código fuente del backend organizados por funcionalidad.
