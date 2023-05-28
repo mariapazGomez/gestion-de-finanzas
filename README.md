@@ -12,7 +12,7 @@ Aplicación Web para el manejo de las finanzas personales
 -   On your browser go to `http://localhost:3000/`.
 
 ## Project structure:
-- `Front/`
+`- `Front/`
     - Contiene todos los archivos correspondientes al frontend de la aplicacón.
     - `public/`  Contiene archivos estáticos y públicos del frontend.
     - `src/` Contiene los archivos de código fuente del backend organizados por funcionalidad.
@@ -31,14 +31,12 @@ Aplicación Web para el manejo de las finanzas personales
 
 ## Database Structure:
 ```
-Users
-  |
-  └ User UID
-        |
-        └ User Data (Email, Name, Password, UID)
-        |
-        └ TransactionList (TransactionsID)
-                |
-                └ Transactions Data (Amount, Category, DateString, Description, Type, dateID)
+GDGData
+    |
+    └ User Data (user_id, nombre, email, password)
+    |
+    └ Ingresos(ingreso_id, id_usuario, monto, descripcion, tag, Fecha)
+    |
+    └ Egresos (Egreso_id, id_usuario, monto, descripcion, tag, forma_de_pago)
 ```
 
