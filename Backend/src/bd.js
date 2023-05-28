@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const DB_URL = 'mongodb+srv://root:SiHrBrnpp7YepAv9@gdg01tel335.tc2whtw.mongodb.net/';
+const DB_URL = process.env.DB_URL;
+// Base de datos
 mongoose.connect(DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
