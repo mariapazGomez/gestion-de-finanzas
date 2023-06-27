@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const DB_URL = process.env.DB_URL;
 // Base de datos
-mongoose.connect('mongodb+srv://root:SiHrBrnpp7YepAv9@gdg01tel335.tc2whtw.mongodb.net/', {
+mongoose.connect('mongodb+srv://root:SiHrBrnpp7YepAv9@gdg01tel335.tc2whtw.mongodb.net/GDGData', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
