@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const db = require('C:/Users/marce/OneDrive/Escritorio/proyecto-apps/gestion-de-finanzas/Backend/src/bd.js');
-const userSchema = require('C:/Users/marce/OneDrive/Escritorio/proyecto-apps/gestion-de-finanzas/Backend/src/models/user.model.js'); //no se me importa
+const db = require('../bd.js');
+const userSchema = require('../../src/models/user.js'); //no se me importa
 
 
 exports.getData = (input, response) => {

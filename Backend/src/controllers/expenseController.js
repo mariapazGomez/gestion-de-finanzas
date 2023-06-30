@@ -1,5 +1,5 @@
 // Importar el modelo de gastos y otros módulos según sea necesario
-const Expense = require('../models/Expense');
+const Expense = require('../models/egreso');
 
 // Controlador para crear un nuevo gasto
 const createExpense = async (req, res) => {
