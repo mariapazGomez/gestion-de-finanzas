@@ -2,9 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "../Backend/src/app.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "../Backend/src/app.js",
+    "start": "src/app.js",
     "dev": "nodemon ../Backend/src/server.js",
     "webpack": "webpack --mode development"
   },
