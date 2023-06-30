@@ -9,7 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 // Rutas
 app.use('/api/home',require('./routes/index'));
-app.use('/api/home',require('./routes/index'));
 app.use('/api/statistics',require('./routes/statistics'));
+
+app.use(express.static(path.join(__dirname,'public')));
+
+
 app.use('/api/menu',require('./routes/menu'));
 module.exports = app;
