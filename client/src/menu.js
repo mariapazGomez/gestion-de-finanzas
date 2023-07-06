@@ -38,7 +38,7 @@ const NavBar = ({ user }) => {
         )}
       </div>
       <div className="navbar__content">
-        <h2 className="navbar__name">Nombre: {user.name}</h2>     
+        <h2 className="navbar__name">Nombre: {user}</h2>
       </div>
     </div>
   );
@@ -58,15 +58,20 @@ const Menu = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const userResponse = await axios.get(`http://localhost:3000/api/menu/${id}`);
+        const { name } = userResponse.data;
+        setUser(name);
+
         const ingresosResponse = await axios.get(`http://localhost:3000/api/ingresos/${id}`);
-        const egresosResponse = await axios.get(`http://localhost:3000/api/egresos/${id}`);
         const { ingresos, totalIngresos } = ingresosResponse.data;
-        const { egresos, totalEgresos } = egresosResponse.data;
         setIngresos(ingresos);
         setTotalIngresos(totalIngresos);
+
+        const egresosResponse = await axios.get(`http://localhost:3000/api/egresos/${id}`);
+        const { egresos, totalEgresos } = egresosResponse.data;
         setEgresos(egresos);
         setTotalEgresos(totalEgresos);
-        setUser(ingresosResponse.data);
+
         setLoading(false);
       } catch (error) {
         console.error(error);
