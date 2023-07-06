@@ -2,10 +2,13 @@ const {Schema, model} = require('mongoose');
 const mongoose = require("mongoose");
 
 const ingresoSchema = new Schema({
+    id_usuario:{
+        type: String,
+        required: true},
     monto:{
         type: Number,
         required: true
-    },
+},
     fecha: {
         type: Date,
         required: true},

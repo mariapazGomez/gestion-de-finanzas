@@ -1,7 +1,9 @@
-import React from 'react';
+
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './menu.css';
+import React, { useEffect, useState } from 'react';
+
 
 const NavBar = ({ user }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -36,7 +38,7 @@ const NavBar = ({ user }) => {
         )}
       </div>
       <div className="navbar__content">
-        <h2 className="navbar__name">Nombre: {user.name}</h2>
+        <h2 className="navbar__name">Nombre: {user.name}</h2>     
       </div>
     </div>
   );
@@ -46,21 +48,35 @@ const NavBar = ({ user }) => {
 
 const Menu = () => {
   const { id } = useParams();
-  const [user, setUser] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [totalIngresos, setTotalIngresos] = useState(0); // Variable para almacenar la suma total de ingresos
+  const [totalEgresos, setTotalEgresos] = useState(0); // Variable para almacenar la suma total de egresos
 
-  React.useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/menu/${id}`)
-      .then(response => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/menu/${id}`);
+        const { ingresos, egresos } = response.data;
         setUser(response.data);
+        
+        // Calcular la suma total de ingresos
+        const sumaIngresos = ingresos.reduce((acc, ingreso) => acc + ingreso.monto, 0);
+        setTotalIngresos(sumaIngresos);
+
+        // Calcular la suma total de egresos
+        const sumaEgresos = egresos.reduce((acc, egreso) => acc + egreso.monto, 0);
+        setTotalEgresos(sumaEgresos);
+
         setLoading(false);
-      })
-      .catch(error => {
+      } catch (error) {
         setError(error.message);
         setLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, [id]);
 
   if (loading) {
@@ -74,6 +90,27 @@ const Menu = () => {
   return (
     <>
       <NavBar user={user} />
+      <div className="tableContainer">
+        <h2>Resumen Financiero</h2>
+        <table className="summaryTable">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ingresos</td>
+              <td>{totalIngresos}</td>
+            </tr>
+            <tr>
+              <td>Egresos</td>
+              <td>{totalEgresos}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

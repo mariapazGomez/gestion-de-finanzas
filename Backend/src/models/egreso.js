@@ -2,10 +2,9 @@ const {Schema, model} = require('mongoose');
 const mongoose = require("mongoose");
 
 const egresoSchema = new Schema({
-    _id:{
-        type:String,
-        autocomplete: true
-    },
+    id_usuario:{
+        type: String,
+        required: true},
     monto:{
         type: Number,
         required: true

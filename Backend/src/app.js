@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
 require('dotenv').config();
 // base de datos
 require('../src/bd');
@@ -19,6 +18,8 @@ app.use(express.urlencoded({extended:true}));
 // Rutas
 app.use('/api/home',require('./routes/index'));
 app.use('/api/home',require('./routes/index'));
-app.use('/api/statistics',require('./routes/statistics'));
 app.use('/api/menu',require('./routes/menu'));
+app.use('/api/egresos', require('./routes/egresos'));
+app.use('/api/ingresos', require('./routes/ingresos'));
+
 module.exports = app;

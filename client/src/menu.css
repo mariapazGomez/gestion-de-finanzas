@@ -81,4 +81,30 @@ body {
     font-size: 24px;
     margin-bottom: 16px;
   }
+  .chartContainer {
+    max-width: 500px;
+    margin-top: 20px;
+  }
+  .tableContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
   
+  .summaryTable {
+    border-collapse: collapse;
+    width: 300px;
+    margin-top: 10px;
+  }
+  
+  .summaryTable th,
+  .summaryTable td {
+    border: 1px solid #745a7a;
+    padding: 8px;
+  }
+  
+  .summaryTable th {
+    background-color: #745a7a;
+    color: white;
+  }
