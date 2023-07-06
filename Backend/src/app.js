@@ -1,7 +1,7 @@
 const express = require('express');
-const cors = require('cors');
 const app = express();
-const User = require('./models/user')
+const cors = require('cors');
+
 require('dotenv').config();
 // base de datos
 require('../src/bd');
@@ -14,12 +14,13 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 // Rutas
-app.get('/',(req,res)=>{
-    res.send('Todo funcionando ...');
-});
+
+app.use('/api/home',require('./routes/index'));
 app.use('/api/home',require('./routes/index'));
 app.use('/api/statistics',require('./routes/statistics'));
 app.use('/api/menu',require('./routes/menu'));
+app.use('/api/egresos', require('./routes/egresos'));
+app.use('/api/ingresos', require('./routes/ingresos'));
 
 // Ruta para el registro de usuarios
 app.post('/register', async (req, res) => {

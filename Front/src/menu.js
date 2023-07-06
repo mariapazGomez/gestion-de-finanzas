@@ -1,86 +1,149 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './menu.css';
+import React, { useEffect, useState } from 'react';
+
+
+const NavBar = ({ user }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const logout = () => {
+    window.location.href = "https://www.google.com";
+  };
+
+  const myFinances = () => {
+    window.location.href = "https://www.google.com";
+  };
+
+  const handleMenuClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div className="navbar">
+      <div className="navbar__menuContainer">
+        <button className="navbar__menuButton" onClick={handleMenuClick}>
+          Menú
+        </button>
+        {isOpen && (
+          <div className="navbar__dropdown">
+            <button className="navbar__button" onClick={logout}>
+              Cerrar sesión
+            </button>
+            <button className="navbar__button" onClick={myFinances}>
+              Mis finanzas
+            </button>
+          </div>
+        )}
+      </div>
+      <div className="navbar__content">
+        <h2 className="navbar__name">Nombre: {user.name}</h2>
+      </div>
+    </div>
+  );
+};
+
+
 
 const Menu = () => {
   const { id } = useParams();
-  const [user, setUser] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [ingresos, setIngresos] = useState([]);
+  const [egresos, setEgresos] = useState([]);
+  const [totalIngresos, setTotalIngresos] = useState(0);
+  const [totalEgresos, setTotalEgresos] = useState(0);
 
-  React.useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/menu/${id}`)
-      .then(response => {
-        setUser(response.data);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const ingresosResponse = await axios.get(`http://localhost:3000/api/ingresos/${id}`);
+        const egresosResponse = await axios.get(`http://localhost:3000/api/egresos/${id}`);
+        const { ingresos, totalIngresos } = ingresosResponse.data;
+        const { egresos, totalEgresos } = egresosResponse.data;
+        setIngresos(ingresos);
+        setTotalIngresos(totalIngresos);
+        setEgresos(egresos);
+        setTotalEgresos(totalEgresos);
+        setUser(ingresosResponse.data);
         setLoading(false);
-      })
-      .catch(error => {
-        setError(error.message);
+      } catch (error) {
+        console.error(error);
         setLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, [id]);
 
   if (loading) {
     return <div>Cargando...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
-    <div style={styles.pageContainer}>
-      <div style={styles.menuContainer}>
-        <h1 style={styles.heading}>Menú</h1>
-        {user && (
-          <div style={styles.userContainer}>
-            <h2 style={styles.name}>Nombre: {user.name}</h2>
-            <p style={styles.email}>Email: {user.email}</p>
-            {/* Otros datos del usuario aquí */}
-          </div>
-        )}
+    <>
+      <NavBar user={user} />
+      <div className="contentContainer">
+        <div className="ingresosContainer">
+          <h3>Ingresos</h3>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {ingresos.map(ingreso => (
+                <tr key={ingreso._id}>
+                  <td>{ingreso.descripcion}</td>
+                  <td>{ingreso.monto}</td>
+                </tr>
+              ))}
+              <tr className="totalRow">
+                <td>Total:</td>
+                <td>{totalIngresos}</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="egresosContainer">
+          <h3>Egresos</h3>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {egresos.map(egreso => (
+                <tr key={egreso._id}>
+                  <td>{egreso.descripcion}</td>
+                  <td>{egreso.monto}</td>
+                </tr>
+              ))}
+              <tr className="totalRow">
+                  <td>Total:</td>
+                  <td>{totalEgresos}</td>
+                  <td></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-const styles = {
-  pageContainer: {
-    backgroundColor: '#f0e8e8',
-    minHeight: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  menuContainer: {
-    backgroundColor: '#f6f2f2',
-    padding: '20px',
-    borderRadius: '8px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  heading: {
-    color: '#4c3f58',
-    fontSize: '24px',
-    marginBottom: '16px',
-  },
-  userContainer: {
-    backgroundColor: '#f6f2f2',
-    padding: '16px',
-    borderRadius: '8px',
-  },
-  name: {
-    color: '#745a7a',
-    fontSize: '18px',
-    marginBottom: '8px',
-  },
-  email: {
-    color: '#745a7a',
-    fontSize: '14px',
-    marginBottom: '8px',
-  },
-};
-
 export default Menu;
+
+
+
+
+
+
