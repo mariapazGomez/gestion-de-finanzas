@@ -18,34 +18,51 @@ body {
     top: 0;
     z-index: 1;
     display: flex;
-    justify-content: flex-start; /* Cambia 'space-between' a 'flex-start' */
+    justify-content: space-between;
     background-color: #f6f2f2;
     padding: 20px;
     border-radius: 8px;
-    width: 100%;
+    width: 97.9%;
   }
   
   .navbar__content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-right: auto; /* Añade un margen automático a la derecha para empujar el botón hacia la izquierda */
+    align-items: flex-end;
+  }
+  
+  
+  .navbar__menuButton {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #745a7a;
+    color: white;
+    cursor: pointer;
+    align-self: center;
   }
   
   .navbar__name {
     color: #745a7a;
-    font-size: 18px;
-    margin-bottom: 8px;
+    white-space: nowrap;  /* Asegura que los textos se mantengan en una línea */
+    overflow: hidden;  /* Oculta el texto que se sale de su contenedor */
+    text-overflow: ellipsis;  /* Añade puntos suspensivos al final del texto que se sale de su contenedor */
   }
   
-  .navbar__email {
-    color: #745a7a;
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
   
-  .navbar__menuButton {
+  .navbar__dropdown {
+    background-color: #f6f2f2;
     padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px; /* Espacio entre el botón "Menú" y los nuevos botones */
+  }
+  
+  .navbar__button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 15px;
     border-radius: 10px;
     border: none;
     background-color: #745a7a;
@@ -53,35 +70,10 @@ body {
     cursor: pointer;
   }
   
-  .navbar__dropdown {
-    position: absolute;
-    top: 10px; 
-    right: 20px;
-    background-color: #f6f2f2;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .navbar__button {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 4px;
-    border: none;
-    background-color: #745a7a;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .menuContainer {
-    background-color: #f6f2f2;
-    padding: 20px;
-    border-radius: 8px;
+  .navbar__menuContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
+    align-items: flex-start;
   }
   
   .heading {
