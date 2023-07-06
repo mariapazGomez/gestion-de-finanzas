@@ -10,7 +10,7 @@ const Menu = () => {
 
   React.useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/menu/${id}`)
+      .get(`http://localhost:3001/api/menu/${id}`)
       .then(response => {
         setUser(response.data);
         setLoading(false);

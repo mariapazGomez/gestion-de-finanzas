@@ -2,9 +2,9 @@ const {Schema, model} = require('mongoose');
 const mongoose = require("mongoose");
 
 const egresoSchema = new Schema({
-    _id:{
+    user_id:{
         type:String,
-        autocomplete: true
+        required:true
     },
     monto:{
         type: Number,

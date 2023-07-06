@@ -2,6 +2,10 @@ const {Schema, model} = require('mongoose');
 const mongoose = require("mongoose");
 
 const ingresoSchema = new Schema({
+    user_id:{
+        type:String,
+        required:true
+    },
     monto:{
         type: Number,
         required: true

@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/login', { email, password });
+      const response = await axios.post('http://localhost:3001/login', { email, password });
       console.log(response.data);
+
+      // Redireccionar a la ruta /menu/:id con el ID del usuario
+      navigate(`/menu/${response.data.id}`);
     } catch (error) {
       console.error(error);
     }
