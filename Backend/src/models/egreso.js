@@ -2,7 +2,7 @@ const {Schema, model} = require('mongoose');
 const mongoose = require("mongoose");
 
 const egresoSchema = new Schema({
-    user_id:{
+    id_usuario:{
         type:String,
         required:true
     },
@@ -12,10 +12,8 @@ const egresoSchema = new Schema({
     },
     fecha: {
         type: Date,
-        required: true},
-    etiqueta: {
-        type: String,
-        required: true},
+        required: true
+    },
     descripcion: {
         type: String,
         required: true

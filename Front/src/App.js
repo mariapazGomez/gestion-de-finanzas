@@ -10,7 +10,7 @@ function App() {
       <Routes>
         {/* Otras rutas aquí */}
           <Route path="/" element={<Login></Login>} />
-          <Route path="/register" component={<Register></Register>} />
+          <Route path="/register" element={<Register></Register>} />
           <Route path="/menu/:id" element={<Menu />} />
       </Routes>
     </Router>

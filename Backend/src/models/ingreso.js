@@ -2,7 +2,7 @@ const {Schema, model} = require('mongoose');
 const mongoose = require("mongoose");
 
 const ingresoSchema = new Schema({
-    user_id:{
+    id_usuario:{
         type:String,
         required:true
     },
@@ -12,9 +12,6 @@ const ingresoSchema = new Schema({
     },
     fecha: {
         type: Date,
-        required: true},
-    etiqueta: {
-        type: String,
         required: true},
     descripcion: {
         type: String,

@@ -11,8 +11,8 @@ router.get('/', async (req,res)=>{
 
 
 router.post('/', async (req,res)=>{
-    const {monto, fecha, etiqueta, descripcion} = req.body;
-    const ingreso = new Ingreso({monto, fecha, etiqueta, descripcion});
+    const {id_usuario ,monto, fecha, etiqueta, descripcion} = req.body;
+    const ingreso = new Ingreso({id_usuario, monto, fecha, etiqueta, descripcion});
     await ingreso.save();
     res.json({status: "Ingreso agregado !"});
 
@@ -20,7 +20,7 @@ router.post('/', async (req,res)=>{
 
 router.put('/:_id', async (req,res)=>{
     const {monto, fecha, etiqueta, descripcion} = req.body;
-    const newIngreso = {monto, fecha, etiqueta, descripcion};
+    const newIngreso = { monto, fecha, etiqueta, descripcion};
     await Ingreso.findByIdAndUpdate(req.params._id, newIngreso);
     res.json({status: 'Ingreso actualizado'})
 })
