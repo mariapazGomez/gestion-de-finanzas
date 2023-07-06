@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './menu.css';
@@ -58,8 +57,8 @@ const Menu = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const ingresosResponse = await axios.get(`http://localhost:3000/api/ingresos/${id}`);
-        const egresosResponse = await axios.get(`http://localhost:3000/api/egresos/${id}`);
+        const ingresosResponse = await axios.get(`http://localhost:3001/api/ingresos/${id}`);
+        const egresosResponse = await axios.get(`http://localhost:3001/api/egresos/${id}`);
         const { ingresos, totalIngresos } = ingresosResponse.data;
         const { egresos, totalEgresos } = egresosResponse.data;
         setIngresos(ingresos);

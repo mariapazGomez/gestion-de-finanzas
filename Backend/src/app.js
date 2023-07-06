@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const User = require('./models/user')
 
 require('dotenv').config();
 // base de datos
@@ -15,7 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 // Rutas
 
-app.use('/api/home',require('./routes/index'));
 app.use('/api/home',require('./routes/index'));
 app.use('/api/statistics',require('./routes/statistics'));
 app.use('/api/menu',require('./routes/menu'));
