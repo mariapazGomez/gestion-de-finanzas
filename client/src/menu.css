@@ -1,110 +1,122 @@
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #f0e8e8
-  }
-  
-  .pageContainer {
-    background-color: #f0e8e8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;  /* Agrega un poco de padding para evitar que el contenido se pegue a los bordes */
-  }
-  
-  .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    background-color: #f6f2f2;
-    padding: 20px;
-    border-radius: 8px;
-    width: 97.9%;
-  }
-  
-  .navbar__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-  }
-  
-  
-  .navbar__menuButton {
-    padding: 15px;
-    border-radius: 10px;
-    border: none;
-    background-color: #745a7a;
-    color: white;
-    cursor: pointer;
-    align-self: center;
-  }
-  
-  .navbar__name {
-    color: #745a7a;
-    white-space: nowrap;  /* Asegura que los textos se mantengan en una línea */
-    overflow: hidden;  /* Oculta el texto que se sale de su contenedor */
-    text-overflow: ellipsis;  /* Añade puntos suspensivos al final del texto que se sale de su contenedor */
-  }
-  
-  
-  .navbar__dropdown {
-    background-color: #f6f2f2;
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 10px; /* Espacio entre el botón "Menú" y los nuevos botones */
-  }
-  
-  .navbar__button {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 15px;
-    border-radius: 10px;
-    border: none;
-    background-color: #745a7a;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .navbar__menuContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .heading {
-    color: #4c3f58;
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-  .chartContainer {
-    max-width: 500px;
-    margin-top: 20px;
-  }
-  .tableContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .summaryTable {
-    border-collapse: collapse;
-    width: 300px;
-    margin-top: 10px;
-  }
-  
-  .summaryTable th,
-  .summaryTable td {
-    border: 1px solid #745a7a;
-    padding: 8px;
-  }
-  
-  .summaryTable th {
-    background-color: #745a7a;
-    color: white;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f0e8e8;
+}
+
+.pageContainer {
+  background-color: #f0e8e8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f6f2f2;
+  padding: 20px;
+  border-radius: 8px;
+  width: 97.9%;
+}
+
+.navbar__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.navbar__menuButton {
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: #745a7a;
+  color: white;
+  cursor: pointer;
+  align-self: center;
+}
+
+.navbar__name {
+  color: #745a7a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 10px;
+}
+
+.navbar__dropdown {
+  background-color: #f6f2f2;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.navbar__button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: #745a7a;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar__menuContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.heading {
+  color: #4c3f58;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.chartContainer {
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.data-table {
+  border-collapse: collapse;
+  width: 60%;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #745a7a;
+  padding: 8px;
+}
+
+.data-table th {
+  background-color: #745a7a;
+  color: white;
+  border-collapse: collapse;
+  width: 60%;
+  margin-top: 20px; /* Elimina este margen superior */
+}
+
+.tableContainer h2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Agrega esta línea para centrar verticalmente */
+  height: 100vh; /* Agrega esta línea para ocupar toda la altura de la pantalla */
+}
+

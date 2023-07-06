@@ -50,28 +50,26 @@ const Menu = () => {
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [totalIngresos, setTotalIngresos] = useState(0); // Variable para almacenar la suma total de ingresos
-  const [totalEgresos, setTotalEgresos] = useState(0); // Variable para almacenar la suma total de egresos
+  const [ingresos, setIngresos] = useState([]);
+  const [egresos, setEgresos] = useState([]);
+  const [totalIngresos, setTotalIngresos] = useState(0);
+  const [totalEgresos, setTotalEgresos] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/menu/${id}`);
-        const { ingresos, egresos } = response.data;
-        setUser(response.data);
-        
-        // Calcular la suma total de ingresos
-        const sumaIngresos = ingresos.reduce((acc, ingreso) => acc + ingreso.monto, 0);
-        setTotalIngresos(sumaIngresos);
-
-        // Calcular la suma total de egresos
-        const sumaEgresos = egresos.reduce((acc, egreso) => acc + egreso.monto, 0);
-        setTotalEgresos(sumaEgresos);
-
+        const ingresosResponse = await axios.get(`http://localhost:3000/api/ingresos/${id}`);
+        const egresosResponse = await axios.get(`http://localhost:3000/api/egresos/${id}`);
+        const { ingresos, totalIngresos } = ingresosResponse.data;
+        const { egresos, totalEgresos } = egresosResponse.data;
+        setIngresos(ingresos);
+        setTotalIngresos(totalIngresos);
+        setEgresos(egresos);
+        setTotalEgresos(totalEgresos);
+        setUser(ingresosResponse.data);
         setLoading(false);
       } catch (error) {
-        setError(error.message);
+        console.error(error);
         setLoading(false);
       }
     };
@@ -83,36 +81,69 @@ const Menu = () => {
     return <div>Cargando...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
     <>
       <NavBar user={user} />
-      <div className="tableContainer">
-        <h2>Resumen Financiero</h2>
-        <table className="summaryTable">
-          <thead>
-            <tr>
-              <th>Tipo</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Ingresos</td>
-              <td>{totalIngresos}</td>
-            </tr>
-            <tr>
-              <td>Egresos</td>
-              <td>{totalEgresos}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="contentContainer">
+        <div className="ingresosContainer">
+          <h3>Ingresos</h3>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {ingresos.map(ingreso => (
+                <tr key={ingreso._id}>
+                  <td>{ingreso.descripcion}</td>
+                  <td>{ingreso.monto}</td>
+                </tr>
+              ))}
+              <tr className="totalRow">
+                <td>Total:</td>
+                <td>{totalIngresos}</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="egresosContainer">
+          <h3>Egresos</h3>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {egresos.map(egreso => (
+                <tr key={egreso._id}>
+                  <td>{egreso.descripcion}</td>
+                  <td>{egreso.monto}</td>
+                </tr>
+              ))}
+              <tr className="totalRow">
+                  <td>Total:</td>
+                  <td>{totalEgresos}</td>
+                  <td></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
 };
 
 export default Menu;
+
+
+
+
+
+
