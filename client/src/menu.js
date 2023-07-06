@@ -1,6 +1,40 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './menu.css';
+
+const NavBar = ({ user }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const logout = () => {
+    window.location.href = "https://www.google.com";
+  }
+
+  const myFinances = () => {
+    window.location.href = "https://www.google.com";
+  }
+
+  const handleMenuClick = () => {
+    setIsOpen(!isOpen);
+  }
+
+  return (
+    <div className="navbar">
+      <div className="navbar__content">
+        <h1 className="heading">Menú</h1>
+        <button className="navbar__menuButton" onClick={handleMenuClick}>Menú</button>
+      {isOpen && (
+        <div className="navbar__dropdown">
+          <button className="navbar__button" onClick={logout}>Cerrar sesión</button>
+          <button className="navbar__button" onClick={myFinances}>Mis finanzas</button>
+        </div>
+      )}
+        <h2 className="navbar__name">Nombre: {user.name}</h2>
+        <p className="navbar__email">Correo: {user.email}</p>
+      </div>
+    </div>
+  );
+};
 
 const Menu = () => {
   const { id } = useParams();
@@ -30,57 +64,10 @@ const Menu = () => {
   }
 
   return (
-    <div style={styles.pageContainer}>
-      <div style={styles.menuContainer}>
-        <h1 style={styles.heading}>Menú</h1>
-        {user && (
-          <div style={styles.userContainer}>
-            <h2 style={styles.name}>Nombre: {user.name}</h2>
-            <p style={styles.email}>Email: {user.email}</p>
-            {/* Otros datos del usuario aquí */}
-          </div>
-        )}
-      </div>
-    </div>
+    <>
+      <NavBar user={user} />
+    </>
   );
-};
-
-const styles = {
-  pageContainer: {
-    backgroundColor: '#f0e8e8',
-    minHeight: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  menuContainer: {
-    backgroundColor: '#f6f2f2',
-    padding: '20px',
-    borderRadius: '8px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  heading: {
-    color: '#4c3f58',
-    fontSize: '24px',
-    marginBottom: '16px',
-  },
-  userContainer: {
-    backgroundColor: '#f6f2f2',
-    padding: '16px',
-    borderRadius: '8px',
-  },
-  name: {
-    color: '#745a7a',
-    fontSize: '18px',
-    marginBottom: '8px',
-  },
-  email: {
-    color: '#745a7a',
-    fontSize: '14px',
-    marginBottom: '8px',
-  },
 };
 
 export default Menu;
