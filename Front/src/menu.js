@@ -1,49 +1,9 @@
+
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './menu.css';
 import React, { useEffect, useState } from 'react';
-
-
-const NavBar = ({ user }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const logout = () => {
-    window.location.href = "https://www.google.com";
-  };
-
-  const myFinances = () => {
-    window.location.href = "https://www.google.com";
-  };
-
-  const handleMenuClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return (
-    <div className="navbar">
-      <div className="navbar__menuContainer">
-        <button className="navbar__menuButton" onClick={handleMenuClick}>
-          Menú
-        </button>
-        {isOpen && (
-          <div className="navbar__dropdown">
-            <button className="navbar__button" onClick={logout}>
-              Cerrar sesión
-            </button>
-            <button className="navbar__button" onClick={myFinances}>
-              Mis finanzas
-            </button>
-          </div>
-        )}
-      </div>
-      <div className="navbar__content">
-        <h2 className="navbar__name">Nombre: {user.name}</h2>
-      </div>
-    </div>
-  );
-};
-
-
+import NavBar from './navBar';
 
 const Menu = () => {
   const { id } = useParams();
@@ -57,15 +17,20 @@ const Menu = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const ingresosResponse = await axios.get(`http://localhost:3001/api/ingresos/${id}`);
-        const egresosResponse = await axios.get(`http://localhost:3001/api/egresos/${id}`);
+        const userResponse = await axios.get(`http://localhost:3000/api/menu/${id}`);
+        const { name } = userResponse.data;
+        setUser(name);
+
+        const ingresosResponse = await axios.get(`http://localhost:3000/api/ingresos/${id}`);
         const { ingresos, totalIngresos } = ingresosResponse.data;
-        const { egresos, totalEgresos } = egresosResponse.data;
         setIngresos(ingresos);
         setTotalIngresos(totalIngresos);
+
+        const egresosResponse = await axios.get(`http://localhost:3000/api/egresos/${id}`);
+        const { egresos, totalEgresos } = egresosResponse.data;
         setEgresos(egresos);
         setTotalEgresos(totalEgresos);
-        setUser(ingresosResponse.data);
+
         setLoading(false);
       } catch (error) {
         console.error(error);
