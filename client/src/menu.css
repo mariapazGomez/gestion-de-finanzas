@@ -120,3 +120,15 @@ body {
   height: 100vh; /* Agrega esta línea para ocupar toda la altura de la pantalla */
 }
 
+.chartsContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.chartContainer {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px #888888;
+}

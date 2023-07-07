@@ -91,54 +91,6 @@ const Menu = () => {
       <NavBar user={user} />
       <div className="contentContainer">
         <div className="ingresosContainer">
-          <h3>Ingresos</h3>
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Descripción</th>
-                <th>Monto</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              {ingresos.map(ingreso => (
-                <tr key={ingreso._id}>
-                  <td>{ingreso.descripcion}</td>
-                  <td>{ingreso.monto}</td>
-                </tr>
-              ))}
-              <tr className="totalRow">
-                <td>Total:</td>
-                <td>{totalIngresos}</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="egresosContainer">
-          <h3>Egresos</h3>
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Descripción</th>
-                <th>Monto</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              {egresos.map(egreso => (
-                <tr key={egreso._id}>
-                  <td>{egreso.descripcion}</td>
-                  <td>{egreso.monto}</td>
-                </tr>
-              ))}
-              <tr className="totalRow">
-                  <td>Total:</td>
-                  <td>{totalEgresos}</td>
-                  <td></td>
-                </tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </>
