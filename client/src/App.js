@@ -7,8 +7,8 @@ function App() {
     <Router>
       <Routes>
         {/* Otras rutas aquí */}
-        <Route path="/menu/:id" element={<Menu />} />
-        <Route path="/statistics/:id" element={<Graphs />} />
+        <Route path="/menu/:id" element={<Graphs />} />
+        <Route path="/statistics/:id" element={<Menu />} />
 
       </Routes>
     </Router>

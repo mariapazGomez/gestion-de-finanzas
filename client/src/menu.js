@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './menu.css';
 import React, { useEffect, useState } from 'react';
-
+import Graphs from './graphs'
 
 const NavBar = ({ user }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -13,7 +13,7 @@ const NavBar = ({ user }) => {
   };
 
   const myFinances = () => {
-    window.location.href = "https://www.google.com";
+    window.location.href = 'http://localhost:3001/statistics/${id}';
   };
 
   const handleMenuClick = () => {
@@ -92,6 +92,7 @@ const Menu = () => {
       <div className="contentContainer">
         <div className="ingresosContainer">
         </div>
+  
       </div>
     </>
   );
