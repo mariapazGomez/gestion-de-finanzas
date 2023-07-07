@@ -1,50 +1,8 @@
-
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './menu.css';
 import React, { useEffect, useState } from 'react';
-import Graphs from './graphs'
-
-const NavBar = ({ user, id }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const { id } = useParams();
-  const logout = () => {
-    window.location.href = `http://localhost:3001/menu/${id}`;
-  };
-
-  const myFinances = () => {
-    window.location.href = `http://localhost:3001/statistics/${id}`;
-  };
-
-  const handleMenuClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return (
-    <div className="navbar">
-      <div className="navbar__menuContainer">
-        <button className="navbar__menuButton" onClick={handleMenuClick}>
-          Menú
-        </button>
-        {isOpen && (
-          <div className="navbar__dropdown">
-            <button className="navbar__button" onClick={logout}>
-              Inicio
-            </button>
-            <button className="navbar__button" onClick={myFinances}>
-              Mis finanzas
-            </button>
-          </div>
-        )}
-      </div>
-      <div className="navbar__content">
-        <h2 className="navbar__name">Nombre: {user}</h2>
-      </div>
-    </div>
-  );
-};
-
-
+import NavBar from './navBar';
 
 const Menu = () => {
   const { id } = useParams();
@@ -91,17 +49,54 @@ const Menu = () => {
       <NavBar user={user} id={id} />
       <div className="contentContainer">
         <div className="ingresosContainer">
+          <h3>Ingresos</h3>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ingresos.map(ingreso => (
+                <tr key={ingreso._id}>
+                  <td>{ingreso.descripcion}</td>
+                  <td>{ingreso.monto}</td>
+                </tr>
+              ))}
+              <tr className="totalRow">
+                <td>Total:</td>
+                <td>{totalIngresos}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-  
+        <div className="egresosContainer">
+          <h3>Egresos</h3>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody>
+              {egresos.map(egreso => (
+                <tr key={egreso._id}>
+                  <td>{egreso.descripcion}</td>
+                  <td>{egreso.monto}</td>
+                </tr>
+              ))}
+              <tr className="totalRow">
+                <td>Total:</td>
+                <td>{totalEgresos}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
 };
 
 export default Menu;
-
-
-
-
-
-

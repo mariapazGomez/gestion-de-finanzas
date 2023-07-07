@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import NavBar from './menu';
+import NavBar from './navBar';
 
 const Graphs = () => {
   const { id } = useParams();
@@ -52,7 +52,7 @@ const Graphs = () => {
 
   return (
     <>
-      <NavBar user={user} />
+      <NavBar user={user} id={id} />
       <div className="pageContainer">
         <div className="chartsContainer">
           <div className="chartContainer">
