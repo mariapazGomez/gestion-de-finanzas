@@ -5,15 +5,15 @@ import './menu.css';
 import React, { useEffect, useState } from 'react';
 import Graphs from './graphs'
 
-const NavBar = ({ user }) => {
+const NavBar = ({ user, id }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const logout = () => {
-    window.location.href = "https://www.google.com";
+    window.location.href = `http://localhost:3001/menu/${id}`;
   };
 
   const myFinances = () => {
-    window.location.href = 'http://localhost:3001/statistics/${id}';
+    window.location.href = `http://localhost:3001/statistics/${id}`;
   };
 
   const handleMenuClick = () => {
@@ -29,7 +29,7 @@ const NavBar = ({ user }) => {
         {isOpen && (
           <div className="navbar__dropdown">
             <button className="navbar__button" onClick={logout}>
-              Cerrar sesión
+              Inicio
             </button>
             <button className="navbar__button" onClick={myFinances}>
               Mis finanzas
@@ -88,7 +88,7 @@ const Menu = () => {
 
   return (
     <>
-      <NavBar user={user} />
+      <NavBar user={user} id={id} />
       <div className="contentContainer">
         <div className="ingresosContainer">
         </div>
