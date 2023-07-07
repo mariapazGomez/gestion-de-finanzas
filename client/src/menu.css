@@ -109,15 +109,14 @@ body {
   color: white;
   border-collapse: collapse;
   width: 60%;
-  margin-top: 20px; /* Elimina este margen superior */
 }
 
 .tableContainer h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Agrega esta línea para centrar verticalmente */
-  height: 100vh; /* Agrega esta línea para ocupar toda la altura de la pantalla */
+  justify-content: center;
+  height: 100vh;
 }
 
 .chartsContainer {
@@ -125,10 +124,34 @@ body {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .chartContainer {
   background-color: white;
   padding: 20px;
   margin: 20px;
   border-radius: 15px;
   box-shadow: 0px 0px 10px #888888;
+}
+
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.tableContainer table {
+  width: 60%;
+}
+
+.tableContainer th,
+.tableContainer td {
+  border: 1px solid #745a7a;
+  padding: 8px;
+  text-align: center;
+}
+
+.tableContainer th {
+  background-color: #745a7a;
+  color: white;
 }

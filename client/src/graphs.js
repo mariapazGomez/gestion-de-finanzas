@@ -57,7 +57,7 @@ const Graphs = () => {
         <div className="chartsContainer">
           <div className="chartContainer">
             <h2>Ingresos</h2>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="101%" height={300}>
               <BarChart data={ingresosData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="descripcion" />
@@ -70,7 +70,7 @@ const Graphs = () => {
           </div>
           <div className="chartContainer">
             <h2>Egresos</h2>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="101%" height={300}>
               <BarChart data={egresosData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="descripcion" />
@@ -85,6 +85,7 @@ const Graphs = () => {
       </div>
     </>
   );
+  
 };
 
 export default Graphs;

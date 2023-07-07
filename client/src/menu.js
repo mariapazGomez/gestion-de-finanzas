@@ -48,7 +48,7 @@ const Menu = () => {
     <>
       <NavBar user={user} id={id} />
       <div className="contentContainer">
-        <div className="ingresosContainer">
+        <div className="ingresosContainer tableContainer"> {/* Agrega la clase "tableContainer" */}
           <h3>Ingresos</h3>
           <table className="data-table">
             <thead>
@@ -71,7 +71,7 @@ const Menu = () => {
             </tbody>
           </table>
         </div>
-        <div className="egresosContainer">
+        <div className="egresosContainer tableContainer"> {/* Agrega la clase "tableContainer" */}
           <h3>Egresos</h3>
           <table className="data-table">
             <thead>
@@ -97,6 +97,7 @@ const Menu = () => {
       </div>
     </>
   );
+  
 };
 
 export default Menu;
