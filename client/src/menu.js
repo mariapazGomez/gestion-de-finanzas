@@ -7,7 +7,7 @@ import Graphs from './graphs'
 
 const NavBar = ({ user, id }) => {
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const { id } = useParams();
   const logout = () => {
     window.location.href = `http://localhost:3001/menu/${id}`;
   };
